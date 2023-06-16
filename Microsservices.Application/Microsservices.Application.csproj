@@ -7,10 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="DTOs\InputModels\" />
-    <Folder Include="DTOs\ViewModels\" />
-    <Folder Include="Queries\" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Microsservices.Core\Microsservices.Core.csproj" />
   </ItemGroup>
 
 </Project>
