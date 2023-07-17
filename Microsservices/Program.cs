@@ -1,4 +1,5 @@
 using Microsservices.Application;
+using Microsservices.Infra;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddHandlers(); //Metódo criado para serviço do MediatR
+builder.Services
+    .AddMongo()
+    .AddRepositories()
+    .AddHandlers(); //Metódo criado para serviço do MediatR
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
