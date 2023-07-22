@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Microsservices.Core\Microsservices.Core.csproj" />
+    <ProjectReference Include="..\Microsservices.Infra\Microsservices.Infra.csproj" />
   </ItemGroup>
 
 </Project>

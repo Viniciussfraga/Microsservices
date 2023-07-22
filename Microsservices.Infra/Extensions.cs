@@ -1,14 +1,16 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsservices.Core.Repositories;
+using Microsservices.Infra.MessageBus;
 using Microsservices.Infra.Persistence;
 using Microsservices.Infra.Persistence.Repositories;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using RabbitMQ.Client;
 
 namespace Microsservices.Infra
 {
-    public static class Extensios
+    public static class Extensions
     {
         public static IServiceCollection AddMongo(this IServiceCollection services)
         {
@@ -45,6 +47,21 @@ namespace Microsservices.Infra
         public static IServiceCollection AddRepositories(this IServiceCollection services)
         {
             services.AddScoped<IOrderRepository, OrderRepository>();
+
+            return services;
+        }
+
+        public static IServiceCollection AddMessageBus(this IServiceCollection services)
+        {
+            var connectionFactory = new ConnectionFactory
+            {
+                HostName = "localhost"
+            };
+
+            var connection = connectionFactory.CreateConnection("order-service-producer");
+
+            services.AddSingleton(new ProducerConnection(connection));
+            services.AddSingleton<IMessageBusClient, RabbitMqClient>();
 
             return services;
         }
