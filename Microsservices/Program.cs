@@ -11,7 +11,8 @@ builder.Services
     .AddMessageBus()
     .AddMongo()
     .AddRepositories()
-    .AddHandlers(); //Metódo criado para serviço do MediatR
+    .AddHandlers() //Metódo criado para serviço do MediatR
+    .AddSubscribers();
 
 builder.Services.AddHttpClient();
 

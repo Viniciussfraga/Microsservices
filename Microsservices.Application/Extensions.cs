@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using Microsservices.Application.Commands;
+using Microsservices.Application.Subscribers;
 using System.Text;
 
 namespace Microsservices.Application
@@ -10,6 +11,13 @@ namespace Microsservices.Application
         public static IServiceCollection AddHandlers(this IServiceCollection services)
         {
             services.AddMediatR(typeof(AddOrder));
+
+            return services;
+        }
+
+        public static IServiceCollection AddSubscribers(this IServiceCollection services)
+        {
+            services.AddHostedService<PaymentAcceptedSubscriber>();
 
             return services;
         }
